@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.gaozhao.mavendemo</groupId>
+  <artifactId>mavenparent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <!-- 此时的打包方式为pom，用来被maven项目继承 -->
+  <packaging>pom</packaging>
+  
+  <!-- 聚合。在本项目中执行命令时所有配置的聚合项目都统一执行命令，在项目导入时，只要导入该一个项目，所有聚合的子项目都一起被检查，可以同时导入 -->
+  <modules>
+  	<module>../maven01</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- 这些依赖全部给子maven继承 -->
+  <dependencies>
+    <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version> 
+	</dependency>
+  </dependencies>
+  
+  <!-- 依赖管理。子maven想使用时才继承，继承时需要此处的groupId和artifactId，版本号继承自该定义（版本号可以集中管理） -->
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+</project>
